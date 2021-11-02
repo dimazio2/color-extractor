@@ -1,0 +1,38 @@
+{% extends "bootstrap/base.html" %}
+{% block head %}
+  <title>{% block title %}{% endblock %}Image Color Analyzer</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col text-center">
+        <h2>Top 10 most common colors</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center px-0">
+        <img class="img-fluid" src="{{ url_for('uploaded_file', filename=filename) }}">
+        <table class="table">
+          <thead>
+		    <tr>
+              <th>Color</th>
+              <th>Color Code</th>
+              <th>Percentage</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for color in colors %}
+            <tr>
+              <td style="background-color: {{ color[0] }}"></td>
+              <td>{{ color[0] }}</td>
+              <td>{{ color[1] }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}
